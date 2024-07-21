@@ -4,6 +4,7 @@ import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import session from "express-session";
+import MongoStore, { create } from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
 
 const app = express();
@@ -16,9 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret: "hello",
-    resave: true,
-    saveUninitialized: true,
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 );
 
