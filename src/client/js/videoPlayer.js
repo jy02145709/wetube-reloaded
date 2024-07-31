@@ -122,6 +122,8 @@ const handleVideoClick = () => {
 };
 
 const handleVideoEnd = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, { method: "POST" });
   video.currentTime = 0;
   playBtnIcon.classList = "fas fa-play";
 };
