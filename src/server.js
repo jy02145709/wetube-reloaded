@@ -16,6 +16,7 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use((req, res, next) => {
   res.header("Cross-Origin-Embedder-Policy", "require-corp");
   res.header("Cross-Origin-Opener-Policy", "same-origin");
@@ -27,7 +28,7 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 );
