@@ -106,9 +106,6 @@ const handleKeyPress = (event) => {
     case " ":
       handlePlayClick();
       break;
-    case "f":
-      handleFullScreen();
-      break;
     case "Escape":
       if (document.fullscreenElement) {
         document.exitFullscreen();
