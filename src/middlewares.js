@@ -12,7 +12,7 @@ const s3Client = new S3Client({
 
 const s3AvatarStorage = multerS3({
   s3: s3Client,
-  bucket: "wetube-reload-fly-glennbak",
+  bucket: "wetube-fly-glenn-2024",
   acl: "public-read",
   key: function (req, file, cb) {
     cb(null, `avatars/${req.session.user._id}/${Date.now().toString()}`);
@@ -21,7 +21,7 @@ const s3AvatarStorage = multerS3({
 
 const s3VideoStorage = multerS3({
   s3: s3Client,
-  bucket: "wetube-reload-fly-glennbak",
+  bucket: "wetube-fly-glenn-2024",
   acl: "public-read",
   key: function (req, file, cb) {
     cb(null, `videos/${req.session.user._id}/${Date.now().toString()}`);
